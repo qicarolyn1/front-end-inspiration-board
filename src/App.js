@@ -114,6 +114,13 @@ function App() {
             <p>Select a board to view cards</p>
           )}
         </div>
+      </main>
+      <main className="container">
+        <div className="forms_content">
+          <p>Form1</p>
+          <p>Form2</p>
+          <p>Form3</p>
+        </div>
         <div className="cards_content">
           <h2>Cards for Board</h2>
           < CardList cards={cards} increaseLikes={increaseLikes} deleteCard={deleteCard} />
