@@ -11,7 +11,6 @@ const Card = (props) => {
     return (
         <li className="card_item">
             <h3>{props.message}</h3>
-            <p>{props.id}</p>
             <ul className="card_item_controls">
                 <li>
                     <p>{props.likes_count}💕</p>

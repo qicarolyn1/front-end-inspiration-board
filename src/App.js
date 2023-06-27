@@ -63,7 +63,7 @@ function App() {
   };
 
   const deleteCard = (id) => {
-    const newCards = CARDS.filter(
+    const newCards = cards.filter(
       (card) => card.id !== id
     );
     setCards(newCards);
