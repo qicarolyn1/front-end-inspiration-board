@@ -24,3 +24,16 @@
     transform: rotate(360deg);
   }
 }
+
+.container {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.forms_content {
+  grid-column-start: 1;
+}
+
+.cards_content {
+  grid-column-start: 2;
+}
