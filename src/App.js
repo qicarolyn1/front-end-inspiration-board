@@ -1,4 +1,5 @@
 import './App.css';
+
 import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from "axios";
@@ -18,12 +19,28 @@ function App() {
       id: 2,
       message: 'Cook Pasta',
       likes_count: 1,
+    },
+    {
+      id: 3,
+      message: 'more card',
+      likes_count: 1,
+    },
+    {
+      id: 4,
+      message: 'card4',
+      likes_count: 1,
+    },
+    {
+      id: 5,
+      message: 'card5',
+      likes_count: 1,
     }
   ];
 
   //const [cards, setCards] = useState([CARDS])
   
   return (
+    
     <div className="App">
       <header className="App-header">
         <h1>Inspiration Board</h1>

@@ -1,0 +1,22 @@
+h3 {
+    text-align: center;
+}
+
+li {
+    display: inline-table;
+    width: 30%;
+    justify-content: space-evenly;
+}
+
+.card_item {
+    font-family: Cormorant Garamond;
+    margin: 0.5em;
+    padding: 1em;
+    text-align: center;
+    background-color: antiquewhite;
+}
+
+button {
+    background-color:rgb(51, 8, 92);
+    color: white;
+}

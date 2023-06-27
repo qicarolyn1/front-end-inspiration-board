@@ -3,6 +3,8 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card.js';
 
+import './CardList.css'
+
 const CardList = ({ cards }) => {
     const getCardListJSX = (cards) => {
         return cards.map((cards) => {
