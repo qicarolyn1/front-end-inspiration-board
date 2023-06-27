@@ -46,7 +46,10 @@ function App() {
         <h1>Inspiration Board</h1>
       </header>
       <main>
-        <div>< CardList cards= {CARDS} /></div>
+        <div class="cards_content">
+          <h2>Cards for Board</h2>
+          < CardList cards= {CARDS} />
+        </div>
       </main>
     </div>
   );

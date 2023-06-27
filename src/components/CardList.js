@@ -18,6 +18,8 @@ const CardList = ({ cards }) => {
             );
         });
     };
+
+    
     return <ul className="card_list">{getCardListJSX(cards)}</ul>;
 };
 
