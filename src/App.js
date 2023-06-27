@@ -1,23 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import {useState, useEffect} from 'react';
+import axios from "axios";
+
+import CardList from './components/CardList.js'
+
+
 
 function App() {
+  const CARDS = [
+    {
+      id: 1,
+      message: 'Mow the lawn',
+      likes_count: 1,
+    },
+    {
+      id: 2,
+      message: 'Cook Pasta',
+      likes_count: 1,
+    }
+  ];
+
+  //const [cards, setCards] = useState([CARDS])
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Inspiration Board</h1>
       </header>
+      <main>
+        <div>< CardList cards= {CARDS} /></div>
+      </main>
     </div>
   );
 }

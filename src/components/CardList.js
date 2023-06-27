@@ -7,7 +7,7 @@ const CardList = ({ cards }) => {
     const getCardListJSX = (cards) => {
         return cards.map((cards) => {
             return (
-                <CARD 
+                <Card
                 key={cards.id}
                 id={cards.id}
                 message={cards.message}

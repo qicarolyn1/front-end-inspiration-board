@@ -10,7 +10,7 @@ const Card = (props) => {
             <h3>{props.message}</h3>
             <ul class="card_item_controls">
                 <li>
-                    <p>{props.likes}💕</p>
+                    <p>{props.likes_count}💕</p>
                 </li>
                 <li>
                     <button className="card_item_like_button">"+1"</button>
