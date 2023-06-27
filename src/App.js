@@ -37,7 +37,29 @@ function App() {
     }
   ];
 
-  //const [cards, setCards] = useState([CARDS])
+  const [cards, setCards] = useState(CARDS)
+
+  const increaseLikes = (id, originalLike) => {
+    const newLike = originalLike + 1
+    console.log(cards);
+    const newCards = cards.map((card) => {
+      if (card.id === id) {
+        const updatedCard = { ...card };
+        updatedCard.likes_count = newLike;
+        return updatedCard;
+      } else {
+        return { ...card };
+      }
+    });
+    setCards(newCards);
+  };
+
+  const deleteCard = (id) => {
+    const newCards = CARDS.filter(
+      (card) => card.id !== id
+    );
+    setCards(newCards);
+  };
   
   return (
     
@@ -46,9 +68,9 @@ function App() {
         <h1>Inspiration Board</h1>
       </header>
       <main>
-        <div class="cards_content">
+        <div className="cards_content">
           <h2>Cards for Board</h2>
-          < CardList cards= {CARDS} />
+          < CardList cards={cards} increaseLikes={increaseLikes} deleteCard={deleteCard} />
         </div>
       </main>
     </div>
