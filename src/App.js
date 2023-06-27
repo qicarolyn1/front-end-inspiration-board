@@ -6,6 +6,8 @@ import axios from "axios";
 
 import CardList from './components/CardList.js'
 
+import BoardList from './components/BoardList';
+import Board from './components/Board';
 
 
 function App() {
@@ -37,7 +39,24 @@ function App() {
     }
   ];
 
+
+  const BOARDS = [
+    {
+      id: 1,
+      title: 'Travel',
+      description: 'Places to visit',
+    },
+    {
+      id: 2,
+      title: 'Cats',
+      description: 'Good Kitties',
+    }
+  ];
+
   const [cards, setCards] = useState(CARDS)
+
+  const [boards, setBoards] = useState([]);
+  const [selectedBoardId, setSelectedBoardId] = useState(null)
 
   const increaseLikes = (id, originalLike) => {
     const newLike = originalLike + 1
@@ -60,6 +79,22 @@ function App() {
     );
     setCards(newCards);
   };
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/boards')
+      .then(response => {
+        setBoards(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleBoardSelect = (id) => {
+    setSelectedBoardId(id);
+  };
+
+  const selectedBoard = boards.find(board => board.id === selectedBoardId);
   
   return (
     
@@ -68,6 +103,17 @@ function App() {
         <h1>Inspiration Board</h1>
       </header>
       <main>
+        <div className="boards">
+          <h2>Boards</h2>
+          <BoardList boards={BOARDS} onSelect={handleBoardSelect} />
+        </div>
+        <div className="board-details">
+          {selectedBoardId ? (
+            <p>Selected board id: {selectedBoardId}</p>
+          ) : (
+            <p>Select a board to view cards</p>
+          )}
+        </div>
         <div className="cards_content">
           <h2>Cards for Board</h2>
           < CardList cards={cards} increaseLikes={increaseLikes} deleteCard={deleteCard} />
