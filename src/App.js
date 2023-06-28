@@ -53,6 +53,7 @@ function App() {
 
   const [boards, setBoards] = useState(BOARDS);
   const [selectedBoard, setSelectedBoard] = useState(null);
+  const [showNewBoardForm, setShowNewBoardForm] = useState(true)
 
 
   const handleSelectBoard = (boardId) => {
@@ -70,6 +71,11 @@ function App() {
   const createBoard = (title, owner) => {
     const newBoard = { id: Date.now(), title, owner };
     setBoards(prevBoards => [...prevBoards, newBoard]);
+    setShowNewBoardForm(false);
+  }
+
+  const handleHide = () => {
+    setShowNewBoardForm(false);
   }
 
 
@@ -93,7 +99,11 @@ function App() {
           </div>
         <div className="new_board">
           <h2>Create New Board</h2>
-            <NewBoardForm onSubmit={createBoard} />
+          {showNewBoardForm ? (
+            <NewBoardForm onSubmit={createBoard} onHide={handleHide}/>
+          ) : (
+            <button onClick={() => setShowNewBoardForm(true)}>Show Form</button>
+      )}
         </div>
           <p>Form3</p>
         </div>
