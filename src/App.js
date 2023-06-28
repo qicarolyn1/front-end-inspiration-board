@@ -13,49 +13,24 @@ const BOARDS = [
 ];
 
 function App() {
-  const CARDS = [
-    {
-      id: 1,
-      message: 'Mow the lawn',
-      likes_count: 1,
-    },
-    {
-      id: 2,
-      message: 'Cook Pasta',
-      likes_count: 1,
-    },
-    {
-      id: 3,
-      message: 'more card',
-      likes_count: 1,
-    },
-    {
-      id: 4,
-      message: 'card4',
-      likes_count: 1,
-    },
-    {
-      id: 5,
-      message: 'card5',
-      likes_count: 1,
-    }
-  ];
 
-  const [cards, setCards] = useState(CARDS)
+  const [cards, setCards] = useState([])
+  const API = "http://127.0.0.1:5000/";
+
+  const getAllCards = (board_id) => {
+    axios
+      .get(`${API}/${board_id}/cards`)
+      .then((result) => {
+        setCards(result.data);
+      })
+      .catch((err) => {
+        console.log(err)
+      });
+  };
 
   const increaseLikes = (id, originalLike) => {
-    const newLike = originalLike + 1
-    console.log(cards);
-    const newCards = cards.map((card) => {
-      if (card.id === id) {
-        const updatedCard = { ...card };
-        updatedCard.likes_count = newLike;
-        return updatedCard;
-      } else {
-        return { ...card };
-      }
-    });
-    setCards(newCards);
+    axios 
+      .patch(`${API}/$id`)
   };
 
   const deleteCard = (id) => {
@@ -73,6 +48,8 @@ function App() {
   const handleSelectBoard = (boardId) => {
     const selected = boards.find(board => board.id === boardId);
     setSelectedBoard(selected);
+    getAllCards(boardId); 
+    // adding this here so it will only get all the cards when the board is chosen
   }
 
   const deleteBoard = (boardId) => {
