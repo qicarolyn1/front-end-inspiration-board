@@ -17,9 +17,9 @@ function App() {
   const [cards, setCards] = useState([])
   const API = "http://127.0.0.1:5000/";
 
-  const getAllCards = () => {
+  const getAllCards = (boardId) => {
     axios
-      .get(`${API}/${selectedBoard.id}/cards`)
+      .get(`${API}/${boardId}/cards`)
       .then((result) => {
         setCards(result.data);
       })
@@ -32,7 +32,7 @@ function App() {
     axios 
       .patch(`${API}/${id}/like`, originalLike + 1)
       .then((result) => {
-        getAllCards(selectedBoard.id);
+        getAllCards(selectedBoard);
       })
       .catch((err) => {
         console.log(err)
@@ -43,7 +43,7 @@ function App() {
     axios
       .delete(`${API}/cards/${id}`)
       .then((result) => {
-        getAllCards(selectedBoard.id);
+        getAllCards(selectedBoard);
       })
       .catch((err) => {
         console.log(err)
