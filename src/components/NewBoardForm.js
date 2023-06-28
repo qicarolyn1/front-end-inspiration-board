@@ -1,10 +1,14 @@
 import React from 'react';
-import { useState } from 'react';
-import PropTypes from 'prop-types';
 
 const NewBoardForm = ({ onSubmit }) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const title = event.target.title.value;
+    const owner = event.target.owner.value;
+    onSubmit(title, owner);
+  };
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit}>
       <label htmlFor="title">Title</label>
       <input type="text" id="title" name="title" required />
       <br />

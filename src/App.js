@@ -1,11 +1,7 @@
 import './App.css';
-
-import React from 'react';
-import {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import axios from "axios";
-
 import CardList from './components/CardList.js'
-
 import BoardList from './components/BoardList';
 import Board from './components/Board';
 import NewBoardForm from './components/NewBoardForm';
@@ -74,7 +70,7 @@ function App() {
   const [selectedBoard, setSelectedBoard] = useState(null);
 
 
-  function handleSelectBoard(boardId) {
+  const handleSelectBoard = (boardId) => {
     const selected = boards.find(board => board.id === boardId);
     setSelectedBoard(selected);
   }
@@ -84,7 +80,7 @@ function App() {
     setSelectedBoard(null);
   };
 
-  function createBoard(title, owner) {
+  const createBoard = (title, owner) => {
     const newBoard = { id: Date.now(), title, owner };
     setBoards(prevBoards => [...prevBoards, newBoard]);
   }
@@ -103,17 +99,14 @@ function App() {
             {!selectedBoard && <p>Please select a board from the list below.</p>}
         {selectedBoard && (
           <div>
-            <h2>
-              {selectedBoard.title} ({selectedBoard.owner})
-            </h2>
             <Board board={selectedBoard} onDelete={deleteBoard} />
           </div>
         )}
-        <BoardList boards={BOARDS} onSelect={handleSelectBoard} />
+        <BoardList boards={boards} onSelect={handleSelectBoard} />
           </div>
         <div className="new_board">
           <h2>Create New Board</h2>
-            <NewBoardForm onCreate={createBoard} />
+            <NewBoardForm onSubmit={createBoard} />
         </div>
           <p>Form3</p>
         </div>
