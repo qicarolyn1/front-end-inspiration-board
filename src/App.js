@@ -5,6 +5,7 @@ import CardList from './components/CardList.js'
 import BoardList from './components/BoardList';
 import Board from './components/Board';
 import NewBoardForm from './components/NewBoardForm';
+import NewCardForm from './components/NewCardForm';
 
 const BOARDS = [
   { id: 1, title: 'Banana', owner: 'Anh', cards: [] },
@@ -27,6 +28,17 @@ function App() {
         console.log(err)
       });
   };
+
+  const addCard = (newCardData) => {
+    axios
+      .post(`${API}/boards/${selectedBoard}/cards`, newCardData)
+      .then((result) => {
+        getAllCards(selectedBoard);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const increaseLikes = (id, originalLike) => {
     axios 
@@ -106,7 +118,11 @@ function App() {
             <button onClick={() => setShowNewBoardForm(true)}>Show Form</button>
       )}
         </div>
-          <p>Form3</p>
+        <div className="new_card">
+        {showNewCardForm ? (
+            <NewCardForm addCard={addCard}/>
+          ) : ('')}
+        </div>
         </div>
         <div className="cards_content">
           <h2>Cards for Board</h2>
