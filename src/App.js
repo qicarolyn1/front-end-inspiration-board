@@ -32,7 +32,7 @@ function App() {
     axios 
       .patch(`${API}/${id}/like`, originalLike + 1)
       .then((result) => {
-        getAllCards(result);
+        getAllCards(result.board_id);
       })
       .catch((err) => {
         console.log(err)
