@@ -17,9 +17,9 @@ function App() {
   const [cards, setCards] = useState([])
   const API = "http://127.0.0.1:5000/";
 
-  const getAllCards = (board_id) => {
+  const getAllCards = () => {
     axios
-      .get(`${API}/${board_id}/cards`)
+      .get(`${API}/${selectedBoard.id}/cards`)
       .then((result) => {
         setCards(result.data);
       })
@@ -32,7 +32,7 @@ function App() {
     axios 
       .patch(`${API}/${id}/like`, originalLike + 1)
       .then((result) => {
-        getAllCards(result.board_id);
+        getAllCards(selectedBoard.id);
       })
       .catch((err) => {
         console.log(err)
@@ -43,7 +43,7 @@ function App() {
     axios
       .delete(`${API}/cards/${id}`)
       .then((result) => {
-        getAllCards(result);
+        getAllCards(selectedBoard.id);
       })
       .catch((err) => {
         console.log(err)
@@ -53,13 +53,15 @@ function App() {
 
   const [boards, setBoards] = useState(BOARDS);
   const [selectedBoard, setSelectedBoard] = useState(null);
-  const [showNewBoardForm, setShowNewBoardForm] = useState(true)
+  const [showNewBoardForm, setShowNewBoardForm] = useState(true);
+  const [showNewCardForm, setShowNewCardForm] = useState(false);
 
 
   const handleSelectBoard = (boardId) => {
     const selected = boards.find(board => board.id === boardId);
     setSelectedBoard(selected);
     getAllCards(boardId); 
+    setShowNewCardForm(true);
     // adding this here so it will only get all the cards when the board is chosen
   }
 
@@ -71,7 +73,6 @@ function App() {
   const createBoard = (title, owner) => {
     const newBoard = { id: Date.now(), title, owner };
     setBoards(prevBoards => [...prevBoards, newBoard]);
-    setShowNewBoardForm(false);
   }
 
   const handleHide = () => {
