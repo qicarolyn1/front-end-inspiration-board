@@ -30,14 +30,24 @@ function App() {
 
   const increaseLikes = (id, originalLike) => {
     axios 
-      .patch(`${API}/$id`)
+      .patch(`${API}/${id}/like`, originalLike + 1)
+      .then((result) => {
+        getAllCards(result);
+      })
+      .catch((err) => {
+        console.log(err)
+      });
   };
 
   const deleteCard = (id) => {
-    const newCards = cards.filter(
-      (card) => card.id !== id
-    );
-    setCards(newCards);
+    axios
+      .delete(`${API}/cards/${id}`)
+      .then((result) => {
+        getAllCards(result);
+      })
+      .catch((err) => {
+        console.log(err)
+      });
   };
 
 
