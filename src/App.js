@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import CardList from './components/CardList.js'
 import BoardList from './components/BoardList';
@@ -7,11 +7,11 @@ import Board from './components/Board';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
 
-const BOARDS = [
-  { id: 1, title: 'Banana', owner: 'Anh', cards: [] },
-  { id: 2, title: 'Board 2', owner: 'Kim', cards: [] },
-  { id: 3, title: 'Board 3', owner: 'Carolyn', cards: [] },
-];
+// const BOARDS = [
+//   { id: 1, title: 'Banana', owner: 'Anh', cards: [] },
+//   { id: 2, title: 'Board 2', owner: 'Kim', cards: [] },
+//   { id: 3, title: 'Board 3', owner: 'Carolyn', cards: [] },
+// ];
 
 function App() {
 
@@ -63,7 +63,7 @@ function App() {
   };
 
 
-  const [boards, setBoards] = useState(BOARDS);
+  const [boards, setBoards] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState(null);
   const [showNewBoardForm, setShowNewBoardForm] = useState(true);
   const [showNewCardForm, setShowNewCardForm] = useState(false);
@@ -82,10 +82,49 @@ function App() {
     setSelectedBoard(null);
   };
 
+  const getAllBoards = () => {
+    axios
+    .get(`${API}/boards`)
+    .then((result) => {
+      setBoards(result.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
+
+  useEffect(() => {
+    getAllBoards();
+  }, []);
+
+
+  const selectBoard = (id) => {
+    axios
+    .get(`${API}/boards/${id}`)
+    .then((result) => {
+      setSelectedBoard(result.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
+
+  useEffect(() => {
+    selectBoard();
+  }, []);
+
   const createBoard = (title, owner) => {
-    const newBoard = { id: Date.now(), title, owner };
-    setBoards(prevBoards => [...prevBoards, newBoard]);
-  }
+    axios
+    .post(`${API}/boards`, {'title': title, 'owner': owner})
+    .then((result) => {
+      console.log(result.data);
+      setBoards((prevBoards) => [...prevBoards, result.data]);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
+
 
   const handleHide = () => {
     setShowNewBoardForm(false);
