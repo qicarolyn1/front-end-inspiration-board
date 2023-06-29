@@ -6,7 +6,7 @@ import BoardList from './components/BoardList';
 import Board from './components/Board';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
-require('dotenv').config();
+
 
 function App() {
 
