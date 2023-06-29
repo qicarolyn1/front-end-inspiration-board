@@ -7,8 +7,8 @@ const BoardList = ({ boards, onSelect }) => {
   return (
     <div>
       {boards.map(board => (
-        <div key={board.id}>
-          <button onClick={() => onSelect(board.id)}>{board.title}</button>
+        <div key={board.board_id}>
+          <button onClick={() => onSelect(board.board_id)}>{board.title}</button>
         </div>
       ))}
     </div>

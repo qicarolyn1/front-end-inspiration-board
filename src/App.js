@@ -7,11 +7,6 @@ import Board from './components/Board';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
 
-// const BOARDS = [
-//   { id: 1, title: 'Banana', owner: 'Anh', cards: [] },
-//   { id: 2, title: 'Board 2', owner: 'Kim', cards: [] },
-//   { id: 3, title: 'Board 3', owner: 'Carolyn', cards: [] },
-// ];
 
 function App() {
 
@@ -70,7 +65,7 @@ function App() {
 
 
   const handleSelectBoard = (boardId) => {
-    const selected = boards.find(board => board.id === boardId);
+    const selected = boards.find(board => board.board_id === boardId);
     setSelectedBoard(selected);
     getAllCards(boardId); 
     setShowNewCardForm(true);
@@ -78,7 +73,7 @@ function App() {
   }
 
   const deleteBoard = (boardId) => {
-    setBoards((prevBoards) => prevBoards.filter((board) => board.id !== boardId));
+    setBoards((prevBoards) => prevBoards.filter((board) => board.board_id !== boardId));
     setSelectedBoard(null);
   };
 
@@ -86,6 +81,7 @@ function App() {
     axios
     .get(`${API}/boards`)
     .then((result) => {
+      console.log(result.data)
       setBoards(result.data);
     })
     .catch((error) => {
@@ -98,26 +94,12 @@ function App() {
   }, []);
 
 
-  const selectBoard = (id) => {
-    axios
-    .get(`${API}/boards/${id}`)
-    .then((result) => {
-      setSelectedBoard(result.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  };
-
-  useEffect(() => {
-    selectBoard();
-  }, []);
-
   const createBoard = (title, owner) => {
     axios
     .post(`${API}/boards`, {'title': title, 'owner': owner})
     .then((result) => {
       console.log(result.data);
+      getAllBoards()
       setBoards((prevBoards) => [...prevBoards, result.data]);
     })
     .catch((error) => {
