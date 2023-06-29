@@ -128,7 +128,7 @@ function App() {
     
     <div className="App">
       <header className="App-header">
-        <h1>Inspiration Board</h1>
+        <h1>CAKA's Inspiration Board</h1>
       </header>
       <main className="container">
         <div className="forms_content">
