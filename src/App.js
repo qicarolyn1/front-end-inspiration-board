@@ -83,7 +83,8 @@ function App() {
     .delete(`${API}/boards/${boardId}`)
     .then((result) => {
       getAllBoards();
-      setSelectedBoard(null)
+      setSelectedBoard(null);
+      setShowNewCardForm(false);
     })
     .catch((error) => {
       console.log(error);
