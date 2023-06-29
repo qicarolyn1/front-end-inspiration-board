@@ -6,8 +6,7 @@ import BoardList from './components/BoardList';
 import Board from './components/Board';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
-
-process.env.NODE_VERSION = "14.17.0";
+require('dotenv').config();
 
 function App() {
 
