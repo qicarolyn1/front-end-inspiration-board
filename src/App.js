@@ -11,7 +11,7 @@ import NewCardForm from './components/NewCardForm';
 function App() {
 
   const [cards, setCards] = useState([])
-  const API = "http://127.0.0.1:5000/";
+  const API = "https://back-end-inspiration-board-4230caka.onrender.com/";
 
   const getAllCards = (boardId) => {
     axios
