@@ -8,7 +8,7 @@ const Board = ({ board, onDelete }) => {
     <div>
       <h2>{board.title}</h2>
       <p>Owner: {board.owner}</p>
-      <button onClick={() => onDelete(board.id)}>Delete</button>
+      <button onClick={() => onDelete(board.board_id)}>Delete</button>
     </div>
   );
 };

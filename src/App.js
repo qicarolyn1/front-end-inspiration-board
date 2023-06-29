@@ -73,8 +73,15 @@ function App() {
   }
 
   const deleteBoard = (boardId) => {
-    setBoards((prevBoards) => prevBoards.filter((board) => board.board_id !== boardId));
-    setSelectedBoard(null);
+    axios
+    .delete(`${API}/boards/${boardId}`)
+    .then((result) => {
+      getAllBoards();
+      setSelectedBoard(null)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
 
   const getAllBoards = () => {
@@ -93,7 +100,6 @@ function App() {
     getAllBoards();
   }, []);
 
-
   const createBoard = (title, owner) => {
     axios
     .post(`${API}/boards`, {'title': title, 'owner': owner})
@@ -107,11 +113,9 @@ function App() {
     });
   };
 
-
   const handleHide = () => {
     setShowNewBoardForm(false);
   }
-
 
   return (
     
