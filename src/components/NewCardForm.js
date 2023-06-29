@@ -18,6 +18,7 @@ const NewCardForm = ({ addCard }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(formData)
         addCard(formData);
         setFormData(INITIAL_FORM_DATA);
     };
@@ -30,9 +31,10 @@ const NewCardForm = ({ addCard }) => {
                 required
                 name="message" 
                 message="text"
-                value={formData.title}
+                value={formData.message}
                 onChange={handleChange}
             />
+            <button type="submit" onClick={handleSubmit}>Submit New Card</button>
         </form>
     );
 };

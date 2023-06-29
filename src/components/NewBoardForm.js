@@ -25,7 +25,7 @@ const NewBoardForm = ({ onSubmit, onHide }) => {
         <label htmlFor="owner">Owner</label>
         <input type="text" id="owner" name="owner" required />
         <br />
-        <button type="submit">Submit New Board</button>
+        <button type="submit" onClick={handleSubmit}>Submit New Board</button>
         <br />
         <button type="button" onClick={handleHide}>Hide Form</button>
       </form>

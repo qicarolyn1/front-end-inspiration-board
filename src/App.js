@@ -15,7 +15,7 @@ function App() {
 
   const getAllCards = (boardId) => {
     axios
-      .get(`${API}/${boardId}/cards`)
+      .get(`${API}/boards/${boardId}/cards`)
       .then((result) => {
         setCards(result.data);
       })
@@ -25,10 +25,12 @@ function App() {
   };
 
   const addCard = (newCardData) => {
+    const currentBoardId = selectedBoard.board_id
+    newCardData.likes_count = 0
     axios
-      .post(`${API}/boards/${selectedBoard}/cards`, newCardData)
+      .post(`${API}/boards/${currentBoardId}/cards`, newCardData)
       .then((result) => {
-        getAllCards(selectedBoard);
+        getAllCards(currentBoardId);
       })
       .catch((err) => {
         console.log(err);
@@ -36,10 +38,11 @@ function App() {
   }
 
   const increaseLikes = (id, originalLike) => {
+    const currentBoardId = selectedBoard.board_id
     axios 
       .patch(`${API}/${id}/like`, originalLike + 1)
       .then((result) => {
-        getAllCards(selectedBoard);
+        getAllCards(currentBoardId);
       })
       .catch((err) => {
         console.log(err)
@@ -47,10 +50,12 @@ function App() {
   };
 
   const deleteCard = (id) => {
+    console.log(id)
+    const currentBoardId = selectedBoard.board_id
     axios
       .delete(`${API}/cards/${id}`)
       .then((result) => {
-        getAllCards(selectedBoard);
+        getAllCards(currentBoardId);
       })
       .catch((err) => {
         console.log(err)
