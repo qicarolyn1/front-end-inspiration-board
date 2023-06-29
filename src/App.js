@@ -40,7 +40,6 @@ function App() {
   const increaseLikes = (id, originalLike) => {
     const currentBoardId = selectedBoard.board_id;
     const newLikeCount = {likes_count: originalLike + 1};
-    console.log(newLikeCount);
     axios 
       .put(`${API}/cards/${id}/like`, newLikeCount)
       .then((result) => {
