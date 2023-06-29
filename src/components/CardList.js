@@ -7,13 +7,13 @@ import './CardList.css'
 
 const CardList = ({ cards, increaseLikes, deleteCard }) => {
     const getCardListJSX = (cards) => {
-        return cards.map((cards) => {
+        return cards.map((card) => {
             return (
                 <Card
-                key={cards.id}
-                id={cards.id}
-                message={cards.message}
-                likes_count={cards.likes_count}
+                key={card.card_id}
+                id={card.card_id}
+                message={card.message}
+                likes_count={card.likes_count}
                 increaseLikes={increaseLikes}
                 deleteCard={deleteCard}
                 />
