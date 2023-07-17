@@ -95,7 +95,6 @@ function App() {
     axios
     .get(`${API}/boards`)
     .then((result) => {
-      console.log(result.data)
       setBoards(result.data);
     })
     .catch((error) => {
