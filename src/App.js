@@ -19,9 +19,7 @@ function App() {
 
   const getAllCards = (boardId) => {
     const sortChoice = document.getElementById('sort-cards').value
-    console.log(sortChoice);
     const sortParam = sortChoice ? `?sort=${sortChoice}` : "";
-    console.log(`${API}/boards/${boardId}/cards${sortParam}`);
     axios
       .get(`${API}/boards/${boardId}/cards${sortParam}`)
       .then((result) => {
