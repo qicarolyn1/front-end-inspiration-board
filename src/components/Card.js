@@ -30,5 +30,13 @@ const Card = (props) => {
     );
 };
 
+Card.propTypes = {
+    id: PropTypes.number.isRequired,
+    message: PropTypes.string.isRequired,
+    likes_count: PropTypes.number.isRequired,
+    increaseLikes: PropTypes.func.isRequired,
+    deleteCard: PropTypes.func.isRequired,
+}
+
 export default Card
 
