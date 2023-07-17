@@ -28,7 +28,7 @@ const CardList = ({ cards, increaseLikes, deleteCard }) => {
 CardList.propTypes = {
     cards: PropTypes.arrayOf(
         PropTypes.shape({
-            id: PropTypes.number.isRequired,
+            card_id: PropTypes.number.isRequired,
             message: PropTypes.string.isRequired,
             likes_count: PropTypes.number.isRequired,
         })

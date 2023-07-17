@@ -13,9 +13,17 @@ function App() {
   const [cards, setCards] = useState([])
   const API = "https://back-end-inspiration-board-4230caka.onrender.com/";
 
+  // document.getElementById('sort-cards').addEventListener('change', function() {
+  //   getAllCards(selectedBoard.board_id);
+  // })
+
   const getAllCards = (boardId) => {
+    const sortChoice = document.getElementById('sort-cards').value
+    console.log(sortChoice);
+    const sortParam = sortChoice ? `?sort=${sortChoice}` : "";
+    console.log(`${API}/boards/${boardId}/cards${sortParam}`);
     axios
-      .get(`${API}/boards/${boardId}/cards`)
+      .get(`${API}/boards/${boardId}/cards${sortParam}`)
       .then((result) => {
         setCards(result.data);
       })
@@ -51,7 +59,6 @@ function App() {
   };
 
   const deleteCard = (id) => {
-    console.log(id)
     const currentBoardId = selectedBoard.board_id
     axios
       .delete(`${API}/cards/${id}`)
@@ -95,7 +102,6 @@ function App() {
     axios
     .get(`${API}/boards`)
     .then((result) => {
-      console.log(result.data)
       setBoards(result.data);
     })
     .catch((error) => {
@@ -111,7 +117,6 @@ function App() {
     axios
     .post(`${API}/boards`, {'title': title, 'owner': owner})
     .then((result) => {
-      console.log(result.data);
       getAllBoards()
       setBoards((prevBoards) => [...prevBoards, result.data]);
     })
@@ -158,6 +163,18 @@ function App() {
         </div>
         <div className="cards_content">
           <h2>Cards for Board</h2>
+          <div>
+            <section className="Container2">
+                <label htmlFor="sort-cards">Sort Cards By: </label>
+                <select name="sort-cards" id="sort-cards" onChange={() => getAllCards(selectedBoard.board_id)}>
+                    <option value="">Card Sorting Option</option>
+                    <option value="message_A-Z">A to Z by Message</option>
+                    <option value="message_Z-A">Z to A by Message</option>
+                    <option value="least_likes">Least Like Count</option>
+                    <option value="most_likes">Most Like Count</option>
+                </select>
+            </section>
+        </div>
           < CardList cards={cards} increaseLikes={increaseLikes} deleteCard={deleteCard} />
         </div>
       </main>
