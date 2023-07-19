@@ -37,3 +37,11 @@
 .cards_content {
   grid-column-start: 2;
 }
+
+h2 {
+  background-color: #282c34;
+  color: white;
+  display: inline-block;
+  font-family: sans-serif;
+  padding: 0.5em .5em;
+}

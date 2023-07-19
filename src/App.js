@@ -146,7 +146,7 @@ function App() {
         <BoardList boards={boards} onSelect={handleSelectBoard} />
           </div>
         <div className="new_board">
-          <h2>Create New Board</h2>
+          <h2>Create a New Board</h2>
           {showNewBoardForm ? (
             <NewBoardForm onSubmit={createBoard} onHide={handleHide}/>
           ) : (

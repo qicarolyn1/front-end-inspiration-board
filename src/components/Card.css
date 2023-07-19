@@ -14,9 +14,11 @@ li {
     padding: 1em;
     text-align: center;
     background-color: antiquewhite;
+    box-shadow: -10px 7px 7px #d3d3d3;
 }
 
 button {
     background-color:rgb(51, 8, 92);
     color: white;
+    border: none;
 }
