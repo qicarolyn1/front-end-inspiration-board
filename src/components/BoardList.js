@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Board from './Board.js';
 
@@ -13,6 +12,16 @@ const BoardList = ({ boards, onSelect }) => {
       ))}
     </div>
   );
+};
+
+BoardList.propTypes = {
+  boards: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      board_id: PropTypes.number.isRequired
+    })
+  ).isRequired,
+  onSelect: PropTypes.func.isRequired
 };
 
 export default BoardList;
